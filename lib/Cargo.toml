@@ -1,0 +1,12 @@
+[package]
+name = "purl"
+version = "0.1.0"
+authors = ["Ty Cobb <bin@tycobb.club>"]
+edition = "2018"
+
+[lib]
+name = "purl"
+path = "src/purl.rs"
+crate-type = ["staticlib"]
+
+[dependencies]

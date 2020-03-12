@@ -1,4 +1,4 @@
 #pragma once
 #include <stdint.h>
 
-int32_t purl(void);
+void purl_clean_url(const char *url);

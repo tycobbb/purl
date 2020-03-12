@@ -1,20 +1,14 @@
 import Cocoa
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate {
-  // -- props --
+class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSDraggingDestination {
   var window: NSWindow!
 
-  // -- NSApplicationDelegate --
-  func applicationWillFinishLaunching(_: Notification) {
-    print("helllooo")
-  }
-  
-  func applicationDidFinishLaunching(_: Notification) {
-    print("hello, swift")
-    print("\(purl())")
-  }
+  // -- props --
+  private var main: MainStatusItem!
 
-  func applicationWillTerminate(_: Notification) {
+  // -- NSApplicationDelegate --
+  func applicationDidFinishLaunching(_: Notification) {
+    main = MainStatusItem.addItem(toStatusBar: .system)
   }
 }

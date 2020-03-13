@@ -6,8 +6,11 @@ edition = "2018"
 
 [lib]
 name = "purl"
-path = "src/purl.rs"
+path = "src/lib.rs"
 crate-type = ["staticlib"]
 
 [dependencies]
+hyper = "0.13"
+hyper-tls = "0.4.1"
 libc = "0.2"
+tokio = { version = "0.2", features = ["full"] }

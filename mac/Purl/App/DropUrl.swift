@@ -15,6 +15,14 @@ final class DropUrl: NSObject, NSWindowDelegate, NSDraggingDestination {
       return
     }
 
-    purl_clean_url(text)
+    guard let raw = purl_clean_url(text) else {
+      print("could not clean url")
+      return
+    }
+
+    let url = String(cString: raw)
+    purl_free_url(raw)
+
+    print("finally, \(url)")
   }
 }

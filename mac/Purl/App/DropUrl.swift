@@ -1,6 +1,14 @@
 import Cocoa
 
 final class DropUrl: NSObject, NSWindowDelegate, NSDraggingDestination {
+  // -- deps --
+  private let purl: Purl
+
+  // -- lifetime --
+  init(purl: Purl = Purl()) {
+    self.purl = purl
+  }
+
   // -- NSDragginDestination --
   func draggingEntered(_ sender: NSDraggingInfo) -> NSDragOperation {
     return .generic
@@ -15,14 +23,11 @@ final class DropUrl: NSObject, NSWindowDelegate, NSDraggingDestination {
       return
     }
 
-    guard let raw = purl_clean_url(text) else {
-      print("could not clean url")
+    guard let url = purl.cleanUrl(text) else {
+      print("failed to clean url: \(text)")
       return
     }
 
-    let url = String(cString: raw)
-    purl_free_url(raw)
-
-    print("finally, \(url)")
+    print("cleaned url: \(url)")
   }
 }

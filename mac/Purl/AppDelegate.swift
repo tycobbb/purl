@@ -5,10 +5,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSDragging
   var window: NSWindow!
 
   // -- props --
-  private var main: MainStatusItem!
+  private var main: MainView!
 
   // -- NSApplicationDelegate --
   func applicationDidFinishLaunching(_: Notification) {
-    main = MainStatusItem.addItem(toStatusBar: .system)
+    main = MainView.addItem(toStatusBar: .system)
   }
 }

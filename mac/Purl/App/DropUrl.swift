@@ -23,11 +23,13 @@ final class DropUrl: NSObject, NSWindowDelegate, NSDraggingDestination {
       return
     }
 
-    guard let url = purl.cleanUrl(text) else {
-      print("failed to clean url: \(text)")
-      return
-    }
+    purl.cleanUrl(text) { url in
+      guard let url = url else {
+        print("failed to clean url: \(text)")
+        return
+      }
 
-    print("cleaned url: \(url)")
+      print("cleaned url: \(url)")
+    }
   }
 }

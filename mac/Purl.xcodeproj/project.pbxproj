@@ -11,6 +11,7 @@
 		103B5E0D241A9A7600D2001A /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103B5E0C241A9A7600D2001A /* MainView.swift */; };
 		103B5E0E241AA3CE00D2001A /* libpurl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 10A3E729241602D70091449E /* libpurl.a */; };
 		1073C6E7241C3DE50049CC65 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1073C6E6241C3DE50049CC65 /* Geometry.swift */; };
+		1073C6E9241E74D00049CC65 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1073C6E8241E74D00049CC65 /* Box.swift */; };
 		10A0B69C241C122B00FB2343 /* Purl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A0B69B241C122B00FB2343 /* Purl.swift */; };
 		10A3E6FC2415FEBF0091449E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A3E6FB2415FEBF0091449E /* AppDelegate.swift */; };
 		10A3E7002415FEC00091449E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 10A3E6FF2415FEC00091449E /* Assets.xcassets */; };
@@ -33,6 +34,7 @@
 		103B5E09241A980600D2001A /* DropUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropUrl.swift; sourceTree = "<group>"; };
 		103B5E0C241A9A7600D2001A /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		1073C6E6241C3DE50049CC65 /* Geometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geometry.swift; sourceTree = "<group>"; };
+		1073C6E8241E74D00049CC65 /* Box.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
 		10A0B69B241C122B00FB2343 /* Purl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Purl.swift; sourceTree = "<group>"; };
 		10A3E6F82415FEBF0091449E /* Purl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Purl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		10A3E6FB2415FEBF0091449E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -70,8 +72,9 @@
 		10A0B69A241C11ED00FB2343 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				10A0B69B241C122B00FB2343 /* Purl.swift */,
+				1073C6E8241E74D00049CC65 /* Box.swift */,
 				1073C6E6241C3DE50049CC65 /* Geometry.swift */,
+				10A0B69B241C122B00FB2343 /* Purl.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -251,6 +254,7 @@
 				103B5E0A241A980600D2001A /* DropUrl.swift in Sources */,
 				10A3E6FC2415FEBF0091449E /* AppDelegate.swift in Sources */,
 				1073C6E7241C3DE50049CC65 /* Geometry.swift in Sources */,
+				1073C6E9241E74D00049CC65 /* Box.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -430,11 +434,13 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Purl/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
+				HEADER_SEARCH_PATHS = ../lib/;
 				INFOPLIST_FILE = Purl/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = ../lib/target/debug;
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.tycobbb.Purl;
 				PRODUCT_NAME = "$(TARGET_NAME)";

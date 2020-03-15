@@ -15,15 +15,20 @@ use url::Url;
 
 // -- api --
 #[no_mangle]
-pub extern "C" fn purl_clean_url(cptr: *const libc::c_char) -> *const libc::c_char {
+pub extern "C" fn purl_clean_url(
+    cptr_url: *const libc::c_char,
+    callback: fn(*const std::ffi::c_void, *const libc::c_char) -> (),
+    cptr_ctx: *const std::ffi::c_void,
+) {
     let cstr_initial = unsafe {
-        assert!(!cptr.is_null());
-        std::ffi::CStr::from_ptr(cptr)
+        assert!(!cptr_url.is_null());
+        std::ffi::CStr::from_ptr(cptr_url)
     };
 
     let initial = guard!(cstr_initial.to_str(), else |err| {
         println!("could not decode cstr: {0}", err);
-        return std::ptr::null()
+        callback(cptr_ctx, std::ptr::null());
+        return
     });
 
     let mut url = Url::new(initial);
@@ -31,15 +36,17 @@ pub extern "C" fn purl_clean_url(cptr: *const libc::c_char) -> *const libc::c_ch
 
     let cleaned = guard!(url.cleaned(), else {
         println!("could not clean url");
-        return std::ptr::null()
+        callback(cptr_ctx, std::ptr::null());
+        return
     });
 
     let cstr_cleaned = guard!(std::ffi::CString::new(cleaned), else |err| {
         println!("could not encode cstr: {0}", err);
-        return std::ptr::null()
+        callback(cptr_ctx, std::ptr::null());
+        return
     });
 
-    return cstr_cleaned.into_raw();
+    callback(cptr_ctx, cstr_cleaned.into_raw());
 }
 
 #[no_mangle]

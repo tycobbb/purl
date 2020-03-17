@@ -17,13 +17,13 @@ impl<'a> Url<'a> {
     }
 
     // -- commands --
-    pub async fn clean(&mut self) {
+    pub async fn clean(&mut self, http: &http::Client) {
         let req = guard!(hyper::Request::head(self.initial).body(hyper::Body::empty()), else |err| {
             return println!("could not build request: {0}", err)
         });
 
         println!("cleaning uri: {0}", req.uri());
-        let res = guard!(http::client().request(req).await, else |err| {
+        let res = guard!(http.request(req).await, else |err| {
             return println!("could not make request: {0}", err)
         });
 
@@ -49,19 +49,30 @@ impl<'a> Url<'a> {
 mod tests {
     use super::Url;
     use crate::http;
+    use crate::purl::Purl;
 
     #[test]
     fn it_cleans_a_url() {
+        let http = http::client();
+        let mut purl = Purl::new();
         let mut url = Url::new("https://httpbin.org/get");
-        http::runtime().block_on(url.clean());
+
+        let task = url.clean(&http);
+        purl.runtime().block_on(task);
+
         assert_eq!(url.cleaned.unwrap(), "https://httpbin.org/get");
     }
 
     #[test]
     fn it_follows_a_redirect() {
+        let http = http::client();
+        let mut purl = Purl::new();
         let mut url =
             Url::new("https://httpbin.org/redirect-to?url=https%3A%2F%2Fhttpbin.org%2Fget");
-        http::runtime().block_on(url.clean());
+
+        let task = url.clean(&http);
+        purl.runtime().block_on(task);
+
         assert_eq!(url.cleaned.unwrap(), "https://httpbin.org/get");
     }
 }

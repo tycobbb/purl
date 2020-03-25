@@ -22,7 +22,6 @@ impl<'a> Url<'a> {
             return println!("could not build request: {0}", err)
         });
 
-        println!("cleaning uri: {0}", req.uri());
         let res = guard!(http.request(req).await, else |err| {
             return println!("could not make request: {0}", err)
         });
@@ -64,7 +63,7 @@ mod tests {
     }
 
     #[test]
-    fn it_follows_a_redirect() {
+    fn it_follows_redirects() {
         let http = http::client();
         let mut purl = Purl::new();
         let mut url =

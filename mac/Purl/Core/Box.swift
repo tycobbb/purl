@@ -1,19 +1,18 @@
 final class Ref<T> {
   // -- props --
-  let value: T
+  private let value: T
 
   // -- lifetime --
-  init(_ value: T) {
+  private init(_ value: T) {
     self.value = value
   }
 
-  // -- queries --
-  func retained() -> UnsafeMutableRawPointer {
-    return Unmanaged.passRetained(self).toOpaque()
+  // -- factories --
+  static func toRaw(_ value: T) -> UnsafeMutableRawPointer {
+    return Unmanaged.passRetained(Ref(value)).toOpaque()
   }
 
-  // -- factories --
-  static func fromRetained(_ retained: UnsafeMutableRawPointer) -> Self {
-    return Unmanaged.fromOpaque(retained).takeRetainedValue()
+  static func fromRaw(_ raw: UnsafeMutableRawPointer) -> T {
+    return Unmanaged<Ref<T>>.fromOpaque(raw).takeRetainedValue().value
   }
 }

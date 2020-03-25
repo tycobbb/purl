@@ -17,8 +17,8 @@ final class Purl {
   }
 
   // -- commands --
-  func cleanUrl(_ initial: String, callback: @escaping (String?) -> Void) {
-    let callback: Ref<DidCleanUrl> = .init { (url: UnsafePointer<Int8>?) in
+  func cleanUrl(_ initial: String, queue: DispatchQueue = .main, callback: @escaping (String?) -> Void) {
+    purl_clean_url(purl, initial, purl_didCleanUrl(ctx:url:), Ref<DidCleanUrl>.toRaw { url in
       var cleaned: String? = nil
 
       if let url = url {
@@ -27,21 +27,12 @@ final class Purl {
       }
 
       callback(cleaned)
-    }
-
-    purl_clean_url(
-      purl,
-      initial,
-      purl_didCleanUrl(ctx:url:),
-      callback.retained()
-    )
+    })
   }
 }
 
 // -- events --
 private func purl_didCleanUrl(ctx: UnsafeMutableRawPointer!, url: UnsafePointer<Int8>?) {
   precondition(ctx != nil, "libpurl must pass context through callback")
-
-  let callback = Ref<Purl.DidCleanUrl>.fromRetained(ctx)
-  callback.value(url)
+  Ref<Purl.DidCleanUrl>.fromRaw(ctx)(url)
 }

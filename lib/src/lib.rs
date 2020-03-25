@@ -58,7 +58,7 @@ pub extern "C" fn purl_clean_url(
         std::ffi::CStr::from_ptr(url_ctpr)
     };
 
-    let initial = guard!(initial_cstr.to_str(), else |err| {
+    let initial: String = guard!(initial_cstr.to_str().map(|s| s.into()), else |err| {
         println!("could not decode cstr: {0}", err);
         callback(ctx_cptr, std::ptr::null());
         return
@@ -66,7 +66,7 @@ pub extern "C" fn purl_clean_url(
 
     let ctx = Context(ctx_cptr);
     purl.runtime().spawn(async move {
-        let mut url = Url::new(initial);
+        let mut url = Url::new(&initial);
         url.clean(&http::client()).await;
 
         let cleaned = guard!(url.cleaned(), else {
@@ -102,13 +102,9 @@ mod tests {
     use super::*;
 
     #[test]
-    fn it_cleans_a_url() {
+    fn it_cleans_a_url_async() {
         let purl = purl_create();
-        purl_clean_url(
-            purl,
-            "https://httpbin.org/get".as_ptr() as *const i8,
-            |_, _| {},
-            std::ptr::null(),
-        );
+        let url = "https://httpbin.org/get\0";
+        purl_clean_url(purl, url.as_ptr() as *const i8, |_, _| {}, std::ptr::null());
     }
 }

@@ -1,8 +1,17 @@
 import Cocoa
 
+// -- types --
+protocol DropUrlDelegate: class {
+  func didChangeRequestState(to isLoading: Bool)
+}
+
+// -- impls --
 final class DropUrl: NSObject, NSWindowDelegate, NSDraggingDestination {
   // -- deps --
   private let purl: Purl
+
+  // -- props --
+  private weak var delegate: DropUrlDelegate?
 
   // -- lifetime --
   init(purl: Purl = Purl()) {
@@ -23,13 +32,10 @@ final class DropUrl: NSObject, NSWindowDelegate, NSDraggingDestination {
       return
     }
 
-    purl.cleanUrl(text) { url in
-      guard let url = url else {
-        print("failed to clean url: \(text)")
-        return
-      }
+    delegate?.didChangeRequestState(to: true)
 
-      print("cleaned url: \(url)")
+    purl.cleanUrl(text) { [weak self] url in
+      self?.delegate?.didChangeRequestState(to: true)
     }
   }
 }

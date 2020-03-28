@@ -43,10 +43,24 @@ extension Vector2 {
     )
   }
 
+  static func * (vec: Self, other: Vector2) -> Self {
+    return .init(
+      x: vec.x * other.x,
+      y: vec.y * other.y
+    )
+  }
+
   static func / (vec: Self, divisor: CGFloat) -> Self {
     return .init(
       x: vec.x / divisor,
       y: vec.y / divisor
+    )
+  }
+
+  static func / (vec: Self, other: Vector2) -> Self {
+    return .init(
+      x: vec.x / other.x,
+      y: vec.y / other.y
     )
   }
 
@@ -67,8 +81,8 @@ extension Vector2 {
   }
 }
 
-// -- impls/NSRect
-extension NSRect {
+// -- impls/CGRect
+extension CGRect {
   // -- queries --
   var center: CGPoint {
     return point(x: 0.5, y: 0.5)
@@ -78,6 +92,13 @@ extension NSRect {
     return CGPoint(
       x: origin.x + size.x * x,
       y: origin.y + size.y * y
+    )
+  }
+
+  func point(r: CGFloat, Θ angle: CGFloat) -> CGPoint {
+    return center + CGPoint(
+      x: r * cos(angle),
+      y: r * sin(angle)
     )
   }
 

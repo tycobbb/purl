@@ -23,6 +23,13 @@ final class MainView: DropUrlDelegate {
     self.icon = Icon(frame: button.bounds)
     self.dropUrl = dropUrl
 
+    let menu = NSMenu()
+    menu.addItem(CopyCleanedUrl.item())
+    menu.addItem(.separator())
+    menu.addItem(ShowPreferences.item())
+    menu.addItem(QuitApplication.item())
+    view.menu = menu
+
     // configure views
     button.addSubview(icon)
     window.registerForDraggedTypes([.URL, .string, .html])

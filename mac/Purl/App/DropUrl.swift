@@ -1,24 +1,21 @@
 import Cocoa
 
-// -- types --
-protocol DropUrlDelegate: class {
-  func didChangeRequestState(to isLoading: Bool)
-}
-
-// -- impls --
-final class DropUrl: NSObject, NSWindowDelegate, NSDraggingDestination {
+final class DropUrl: NSObject, Service.Single, NSWindowDelegate, NSDraggingDestination {
   // -- deps --
-  private let purl: Purl
-
-  // -- props --
-  private weak var delegate: DropUrlDelegate?
+  private let cleanUrl: CleanUrl
 
   // -- lifetime --
-  init(purl: Purl = Purl()) {
-    self.purl = purl
+  init(cleanUrl: CleanUrl = .get()) {
+    self.cleanUrl = cleanUrl
   }
 
-  // -- NSDragginDestination --
+  // -- commands --
+  func addToWindow(window: NSWindow?) {
+    window?.registerForDraggedTypes([.URL, .string, .html])
+    window?.delegate = self
+  }
+
+  // -- NSDraggingDestination --
   func draggingEntered(_ sender: NSDraggingInfo) -> NSDragOperation {
     return .generic
   }
@@ -26,16 +23,17 @@ final class DropUrl: NSObject, NSWindowDelegate, NSDraggingDestination {
   func draggingEnded(_ sender: NSDraggingInfo) {
     let pasteboard = sender.draggingPasteboard
 
-    guard let text = pasteboard.string(forType: .string) else {
+    guard let url = pasteboard.string(forType: .string) else {
       let types = pasteboard.pasteboardItems?.flatMap { $0.types }
       print("drag failed, types: \(types ?? [])")
       return
     }
 
-    delegate?.didChangeRequestState(to: true)
+    cleanUrl.call(url)
+  }
 
-    purl.cleanUrl(text) { [weak self] url in
-      self?.delegate?.didChangeRequestState(to: true)
-    }
+  // -- Service --
+  static func make() -> Self {
+    return self.init()
   }
 }

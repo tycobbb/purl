@@ -9,6 +9,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSDragging
 
   // -- NSApplicationDelegate --
   func applicationDidFinishLaunching(_: Notification) {
-    main = MainView.addItem(toStatusBar: .system)
+    main = MainView.insert()
   }
 }

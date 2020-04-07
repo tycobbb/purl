@@ -1,6 +1,6 @@
 import Cocoa
 
-class ShowPreferences: MenuCommand {
+final class ShowPreferences: MenuCommand {
   // -- MenuCommand --
   func call() {
     print("show preferences...")

@@ -1,7 +1,19 @@
-class CopyCleanedUrl: MenuCommand {
+import Cocoa
+
+final class CopyCleanedUrl: MenuCommand {
+  // -- deps --
+  private let cleanUrl: CleanUrl
+
+  // -- lifetime --
+  init(cleanUrl: CleanUrl = .get()) {
+    self.cleanUrl = cleanUrl
+  }
+
   // -- MenuCommand --
   func call() {
-    print("clean url...")
+    if let url = NSPasteboard.general.string(forType: .string) {
+      cleanUrl.call(url)
+    }
   }
 
   // -- factories --

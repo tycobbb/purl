@@ -1,6 +1,6 @@
 import Cocoa
 
-class QuitApplication: MenuCommand {
+final class QuitApplication: MenuCommand {
   private let app: NSApplication
 
   // -- lifetime --

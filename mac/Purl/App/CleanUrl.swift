@@ -1,6 +1,4 @@
 final class CleanUrl: Service.Single {
-  typealias Observer = (Bool) -> Void
-
   // -- deps --
   private let purl: Purl
 
@@ -15,8 +13,13 @@ final class CleanUrl: Service.Single {
   // -- command --
   func call(_ url: String) -> Void {
     self.isLoading.value = true
+
     purl.cleanUrl(url) { cleaned in
       self.isLoading.value = false
+
+      if let cleaned = cleaned {
+        ShowNotification().call(cleaned)
+      }
     }
   }
 

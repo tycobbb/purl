@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="zDj-P8-NfH">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15705"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Notification View-->
+        <scene sceneID="AiS-Wz-dcN">
+            <objects>
+                <viewController storyboardIdentifier="NotificationView" id="zDj-P8-NfH" customClass="NotificationView" customModule="Purl" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="ZsJ-6Q-BXx">
+                        <rect key="frame" x="0.0" y="0.0" width="120" height="36"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="1000" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="hMZ-Gk-4Rh">
+                                <rect key="frame" x="8" y="10" width="104" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Copied the URL!" id="ZmR-9A-3JH">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="hMZ-Gk-4Rh" secondAttribute="trailing" constant="10" id="1eJ-dB-RFq"/>
+                            <constraint firstItem="hMZ-Gk-4Rh" firstAttribute="top" secondItem="ZsJ-6Q-BXx" secondAttribute="top" constant="10" id="3ht-mk-yJs"/>
+                            <constraint firstAttribute="bottom" secondItem="hMZ-Gk-4Rh" secondAttribute="bottom" constant="10" id="tk0-1l-tfi"/>
+                            <constraint firstItem="hMZ-Gk-4Rh" firstAttribute="leading" secondItem="ZsJ-6Q-BXx" secondAttribute="leading" constant="10" id="xWX-AJ-4yH"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="label" destination="hMZ-Gk-4Rh" id="5hi-Yf-ceX"/>
+                    </connections>
+                </viewController>
+                <customObject id="oA6-Bx-FD4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="139" y="85"/>
+        </scene>
+    </scenes>
+</document>

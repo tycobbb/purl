@@ -26,7 +26,9 @@ final class Purl {
         purl_destroy_url(url)
       }
 
-      callback(cleaned)
+      queue.async {
+        callback(cleaned)
+      }
     })
   }
 }

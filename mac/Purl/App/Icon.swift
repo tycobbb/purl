@@ -10,7 +10,7 @@ final class Icon: NSView, CAAnimationDelegate {
 
   // -- lifetime --
   required init?(coder: NSCoder) {
-    fatalError()
+    fatalError("init(coder:) has not been implemented")
   }
 
   required init(

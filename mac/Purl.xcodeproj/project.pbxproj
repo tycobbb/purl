@@ -18,6 +18,10 @@
 		103B5E0E241AA3CE00D2001A /* libpurl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 10A3E729241602D70091449E /* libpurl.a */; };
 		1073C6E7241C3DE50049CC65 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1073C6E6241C3DE50049CC65 /* Geometry.swift */; };
 		1073C6E9241E74D00049CC65 /* Ref.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1073C6E8241E74D00049CC65 /* Ref.swift */; };
+		108056C9243D6F2600DFFAE7 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108056C8243D6F2600DFFAE7 /* NotificationView.swift */; };
+		108056CB243D6FD600DFFAE7 /* ShowNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108056CA243D6FD600DFFAE7 /* ShowNotification.swift */; };
+		108056CD243D75F300DFFAE7 /* NotificationView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 108056CC243D75F300DFFAE7 /* NotificationView.storyboard */; };
+		108056CF243D80C100DFFAE7 /* Dispatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108056CE243D80C100DFFAE7 /* Dispatch.swift */; };
 		1084C222243AE071009B7DB1 /* App.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1084C221243AE071009B7DB1 /* App.storyboard */; };
 		1084C224243AE2F8009B7DB1 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1084C223243AE2F8009B7DB1 /* Menu.swift */; };
 		10A0B69C241C122B00FB2343 /* Purl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A0B69B241C122B00FB2343 /* Purl.swift */; };
@@ -53,6 +57,10 @@
 		103B5E0C241A9A7600D2001A /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		1073C6E6241C3DE50049CC65 /* Geometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geometry.swift; sourceTree = "<group>"; };
 		1073C6E8241E74D00049CC65 /* Ref.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ref.swift; sourceTree = "<group>"; };
+		108056C8243D6F2600DFFAE7 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		108056CA243D6FD600DFFAE7 /* ShowNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowNotification.swift; sourceTree = "<group>"; };
+		108056CC243D75F300DFFAE7 /* NotificationView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NotificationView.storyboard; sourceTree = "<group>"; };
+		108056CE243D80C100DFFAE7 /* Dispatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dispatch.swift; sourceTree = "<group>"; };
 		1084C221243AE071009B7DB1 /* App.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = App.storyboard; path = Base.lproj/App.storyboard; sourceTree = "<group>"; };
 		1084C223243AE2F8009B7DB1 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		10A0B69B241C122B00FB2343 /* Purl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Purl.swift; sourceTree = "<group>"; };
@@ -111,6 +119,16 @@
 			path = Shared;
 			sourceTree = "<group>";
 		};
+		108056C7243D6F1300DFFAE7 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				108056CA243D6FD600DFFAE7 /* ShowNotification.swift */,
+				108056C8243D6F2600DFFAE7 /* NotificationView.swift */,
+				108056CC243D75F300DFFAE7 /* NotificationView.storyboard */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
 		10A0B69A241C11ED00FB2343 /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -118,6 +136,7 @@
 				1073C6E8241E74D00049CC65 /* Ref.swift */,
 				1073C6E6241C3DE50049CC65 /* Geometry.swift */,
 				1007CBF4243C4151006FE6D2 /* State.swift */,
+				108056CE243D80C100DFFAE7 /* Dispatch.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -190,6 +209,7 @@
 				1007CBF0243C2FF2006FE6D2 /* CleanUrl.swift */,
 				103B5E09241A980600D2001A /* DropUrl.swift */,
 				10E09AFF243A7468002F87F8 /* Menu */,
+				108056C7243D6F1300DFFAE7 /* Notification */,
 				1007CBEA243C2E0C006FE6D2 /* Shared */,
 			);
 			path = App;
@@ -297,6 +317,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				108056CD243D75F300DFFAE7 /* NotificationView.storyboard in Resources */,
 				10A3E7032415FEC00091449E /* Preview Assets.xcassets in Resources */,
 				10A3E7002415FEC00091449E /* Assets.xcassets in Resources */,
 				1084C222243AE071009B7DB1 /* App.storyboard in Resources */,
@@ -323,6 +344,7 @@
 				10E09B05243A74B3002F87F8 /* CopyCleanedUrl.swift in Sources */,
 				10A0B69C241C122B00FB2343 /* Purl.swift in Sources */,
 				1007CBF5243C4151006FE6D2 /* State.swift in Sources */,
+				108056CF243D80C100DFFAE7 /* Dispatch.swift in Sources */,
 				103B5E0D241A9A7600D2001A /* MainView.swift in Sources */,
 				103B5E0A241A980600D2001A /* DropUrl.swift in Sources */,
 				1007CBEE243C2E46006FE6D2 /* Container.swift in Sources */,
@@ -330,10 +352,12 @@
 				1073C6E7241C3DE50049CC65 /* Geometry.swift in Sources */,
 				1073C6E9241E74D00049CC65 /* Ref.swift in Sources */,
 				1007CBE8243C2ACC006FE6D2 /* Icon.swift in Sources */,
+				108056CB243D6FD600DFFAE7 /* ShowNotification.swift in Sources */,
 				10E09B03243A749B002F87F8 /* ShowPreferences.swift in Sources */,
 				10E09AFE243A738C002F87F8 /* MenuCommand.swift in Sources */,
 				10E09B01243A7472002F87F8 /* QuitApplication.swift in Sources */,
 				1007CBF1243C2FF2006FE6D2 /* CleanUrl.swift in Sources */,
+				108056C9243D6F2600DFFAE7 /* NotificationView.swift in Sources */,
 				1007CBF3243C343F006FE6D2 /* Single.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,3 +1,3 @@
-protocol MenuCommand {
+protocol Command {
   func call() -> Void
 }

@@ -29,11 +29,11 @@
 		10A3E7002415FEC00091449E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 10A3E6FF2415FEC00091449E /* Assets.xcassets */; };
 		10A3E7032415FEC00091449E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 10A3E7022415FEC00091449E /* Preview Assets.xcassets */; };
 		10A3E7122415FEC00091449E /* PurlTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A3E7112415FEC00091449E /* PurlTests.swift */; };
+		10C73DBC243D90E5009E57C0 /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C73DBB243D90E5009E57C0 /* Command.swift */; };
 		10E09AFC243A6F9D002F87F8 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E09AFB243A6F9D002F87F8 /* MenuItem.swift */; };
-		10E09AFE243A738C002F87F8 /* MenuCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E09AFD243A738C002F87F8 /* MenuCommand.swift */; };
 		10E09B01243A7472002F87F8 /* QuitApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E09B00243A7472002F87F8 /* QuitApplication.swift */; };
 		10E09B03243A749B002F87F8 /* ShowPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E09B02243A749B002F87F8 /* ShowPreferences.swift */; };
-		10E09B05243A74B3002F87F8 /* CopyCleanedUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E09B04243A74B3002F87F8 /* CopyCleanedUrl.swift */; };
+		10E09B05243A74B3002F87F8 /* CleanCopiedUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E09B04243A74B3002F87F8 /* CleanCopiedUrl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,11 +75,11 @@
 		10A3E7132415FEC00091449E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		10A3E728241602460091449E /* Purl-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Purl-Bridging-Header.h"; sourceTree = "<group>"; };
 		10A3E729241602D70091449E /* libpurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpurl.a; path = ../lib/target/debug/libpurl.a; sourceTree = "<group>"; };
+		10C73DBB243D90E5009E57C0 /* Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
 		10E09AFB243A6F9D002F87F8 /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
-		10E09AFD243A738C002F87F8 /* MenuCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCommand.swift; sourceTree = "<group>"; };
 		10E09B00243A7472002F87F8 /* QuitApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuitApplication.swift; sourceTree = "<group>"; };
 		10E09B02243A749B002F87F8 /* ShowPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowPreferences.swift; sourceTree = "<group>"; };
-		10E09B04243A74B3002F87F8 /* CopyCleanedUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyCleanedUrl.swift; sourceTree = "<group>"; };
+		10E09B04243A74B3002F87F8 /* CleanCopiedUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleanCopiedUrl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +134,7 @@
 			children = (
 				10A0B69B241C122B00FB2343 /* Purl.swift */,
 				1073C6E8241E74D00049CC65 /* Ref.swift */,
+				10C73DBB243D90E5009E57C0 /* Command.swift */,
 				1073C6E6241C3DE50049CC65 /* Geometry.swift */,
 				1007CBF4243C4151006FE6D2 /* State.swift */,
 				108056CE243D80C100DFFAE7 /* Dispatch.swift */,
@@ -218,7 +219,7 @@
 		10C598CF243ADA6300558CA8 /* Commands */ = {
 			isa = PBXGroup;
 			children = (
-				10E09B04243A74B3002F87F8 /* CopyCleanedUrl.swift */,
+				10E09B04243A74B3002F87F8 /* CleanCopiedUrl.swift */,
 				10E09B00243A7472002F87F8 /* QuitApplication.swift */,
 				10E09B02243A749B002F87F8 /* ShowPreferences.swift */,
 			);
@@ -230,7 +231,6 @@
 			children = (
 				1084C223243AE2F8009B7DB1 /* Menu.swift */,
 				10E09AFB243A6F9D002F87F8 /* MenuItem.swift */,
-				10E09AFD243A738C002F87F8 /* MenuCommand.swift */,
 				10C598CF243ADA6300558CA8 /* Commands */,
 			);
 			path = Menu;
@@ -341,7 +341,8 @@
 				10E09AFC243A6F9D002F87F8 /* MenuItem.swift in Sources */,
 				1007CBEC243C2E19006FE6D2 /* Service.swift in Sources */,
 				1084C224243AE2F8009B7DB1 /* Menu.swift in Sources */,
-				10E09B05243A74B3002F87F8 /* CopyCleanedUrl.swift in Sources */,
+				10C73DBC243D90E5009E57C0 /* Command.swift in Sources */,
+				10E09B05243A74B3002F87F8 /* CleanCopiedUrl.swift in Sources */,
 				10A0B69C241C122B00FB2343 /* Purl.swift in Sources */,
 				1007CBF5243C4151006FE6D2 /* State.swift in Sources */,
 				108056CF243D80C100DFFAE7 /* Dispatch.swift in Sources */,
@@ -354,7 +355,6 @@
 				1007CBE8243C2ACC006FE6D2 /* Icon.swift in Sources */,
 				108056CB243D6FD600DFFAE7 /* ShowNotification.swift in Sources */,
 				10E09B03243A749B002F87F8 /* ShowPreferences.swift in Sources */,
-				10E09AFE243A738C002F87F8 /* MenuCommand.swift in Sources */,
 				10E09B01243A7472002F87F8 /* QuitApplication.swift in Sources */,
 				1007CBF1243C2FF2006FE6D2 /* CleanUrl.swift in Sources */,
 				108056C9243D6F2600DFFAE7 /* NotificationView.swift in Sources */,

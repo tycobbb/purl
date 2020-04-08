@@ -1,6 +1,6 @@
 import Cocoa
 
-final class QuitApplication: MenuCommand {
+final class QuitApplication: Command {
   private let app: NSApplication
 
   // -- lifetime --
@@ -8,13 +8,16 @@ final class QuitApplication: MenuCommand {
     self.app = app
   }
 
-  // -- MenuCommand --
+  // -- command --
   func call() {
     app.terminate(nil)
   }
 
   // -- factories --
   static func item() -> MenuItem {
-    return MenuItem(title: "Quit", command: QuitApplication())
+    return MenuItem(
+      title: "Quit",
+      command: QuitApplication()
+    )
   }
 }

@@ -1,6 +1,6 @@
 import Cocoa
 
-final class CopyCleanedUrl: MenuCommand {
+final class CleanCopiedUrl: Command {
   // -- deps --
   private let cleanUrl: CleanUrl
 
@@ -9,7 +9,7 @@ final class CopyCleanedUrl: MenuCommand {
     self.cleanUrl = cleanUrl
   }
 
-  // -- MenuCommand --
+  // -- command --
   func call() {
     if let url = NSPasteboard.general.string(forType: .string) {
       cleanUrl.call(url)
@@ -18,6 +18,10 @@ final class CopyCleanedUrl: MenuCommand {
 
   // -- factories --
   static func item() -> MenuItem {
-    return MenuItem(title: "Copy & Clean URL", command: CopyCleanedUrl())
+    return MenuItem(
+      title: "Copy & Clean URL",
+      key: "C",
+      command: CleanCopiedUrl()
+    )
   }
 }

@@ -1,4 +1,4 @@
-final class State<T: Equatable> {
+final class Signal<T: Equatable> {
   typealias Observer = (T) -> Void
 
   // -- props --

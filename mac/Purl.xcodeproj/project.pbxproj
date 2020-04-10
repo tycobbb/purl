@@ -12,7 +12,7 @@
 		1007CBEE243C2E46006FE6D2 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1007CBED243C2E46006FE6D2 /* Container.swift */; };
 		1007CBF1243C2FF2006FE6D2 /* CleanUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1007CBF0243C2FF2006FE6D2 /* CleanUrl.swift */; };
 		1007CBF3243C343F006FE6D2 /* Single.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1007CBF2243C343F006FE6D2 /* Single.swift */; };
-		1007CBF5243C4151006FE6D2 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1007CBF4243C4151006FE6D2 /* State.swift */; };
+		1007CBF5243C4151006FE6D2 /* Signal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1007CBF4243C4151006FE6D2 /* Signal.swift */; };
 		103B5E0A241A980600D2001A /* DropUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103B5E09241A980600D2001A /* DropUrl.swift */; };
 		103B5E0D241A9A7600D2001A /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103B5E0C241A9A7600D2001A /* MainView.swift */; };
 		103B5E0E241AA3CE00D2001A /* libpurl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 10A3E729241602D70091449E /* libpurl.a */; };
@@ -29,7 +29,10 @@
 		10A3E7002415FEC00091449E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 10A3E6FF2415FEC00091449E /* Assets.xcassets */; };
 		10A3E7032415FEC00091449E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 10A3E7022415FEC00091449E /* Preview Assets.xcassets */; };
 		10A3E7122415FEC00091449E /* PurlTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A3E7112415FEC00091449E /* PurlTests.swift */; };
+		10B0B7DB2440555B0018FEDD /* Cast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B0B7DA2440555B0018FEDD /* Cast.swift */; };
 		10C73DBC243D90E5009E57C0 /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C73DBB243D90E5009E57C0 /* Command.swift */; };
+		10C73DBE243D95DD009E57C0 /* AnyError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C73DBD243D95DD009E57C0 /* AnyError.swift */; };
+		10C73DC0243D967D009E57C0 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C73DBF243D967D009E57C0 /* Request.swift */; };
 		10E09AFC243A6F9D002F87F8 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E09AFB243A6F9D002F87F8 /* MenuItem.swift */; };
 		10E09B01243A7472002F87F8 /* QuitApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E09B00243A7472002F87F8 /* QuitApplication.swift */; };
 		10E09B03243A749B002F87F8 /* ShowPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E09B02243A749B002F87F8 /* ShowPreferences.swift */; };
@@ -52,7 +55,7 @@
 		1007CBED243C2E46006FE6D2 /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
 		1007CBF0243C2FF2006FE6D2 /* CleanUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleanUrl.swift; sourceTree = "<group>"; };
 		1007CBF2243C343F006FE6D2 /* Single.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Single.swift; sourceTree = "<group>"; };
-		1007CBF4243C4151006FE6D2 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
+		1007CBF4243C4151006FE6D2 /* Signal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signal.swift; sourceTree = "<group>"; };
 		103B5E09241A980600D2001A /* DropUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropUrl.swift; sourceTree = "<group>"; };
 		103B5E0C241A9A7600D2001A /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		1073C6E6241C3DE50049CC65 /* Geometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geometry.swift; sourceTree = "<group>"; };
@@ -75,7 +78,10 @@
 		10A3E7132415FEC00091449E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		10A3E728241602460091449E /* Purl-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Purl-Bridging-Header.h"; sourceTree = "<group>"; };
 		10A3E729241602D70091449E /* libpurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpurl.a; path = ../lib/target/debug/libpurl.a; sourceTree = "<group>"; };
+		10B0B7DA2440555B0018FEDD /* Cast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cast.swift; sourceTree = "<group>"; };
 		10C73DBB243D90E5009E57C0 /* Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
+		10C73DBD243D95DD009E57C0 /* AnyError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyError.swift; sourceTree = "<group>"; };
+		10C73DBF243D967D009E57C0 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		10E09AFB243A6F9D002F87F8 /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		10E09B00243A7472002F87F8 /* QuitApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuitApplication.swift; sourceTree = "<group>"; };
 		10E09B02243A749B002F87F8 /* ShowPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowPreferences.swift; sourceTree = "<group>"; };
@@ -134,10 +140,13 @@
 			children = (
 				10A0B69B241C122B00FB2343 /* Purl.swift */,
 				1073C6E8241E74D00049CC65 /* Ref.swift */,
+				10B0B7DA2440555B0018FEDD /* Cast.swift */,
 				10C73DBB243D90E5009E57C0 /* Command.swift */,
 				1073C6E6241C3DE50049CC65 /* Geometry.swift */,
-				1007CBF4243C4151006FE6D2 /* State.swift */,
+				1007CBF4243C4151006FE6D2 /* Signal.swift */,
 				108056CE243D80C100DFFAE7 /* Dispatch.swift */,
+				10C73DBF243D967D009E57C0 /* Request.swift */,
+				10C73DBD243D95DD009E57C0 /* AnyError.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -341,14 +350,17 @@
 				10E09AFC243A6F9D002F87F8 /* MenuItem.swift in Sources */,
 				1007CBEC243C2E19006FE6D2 /* Service.swift in Sources */,
 				1084C224243AE2F8009B7DB1 /* Menu.swift in Sources */,
+				10B0B7DB2440555B0018FEDD /* Cast.swift in Sources */,
 				10C73DBC243D90E5009E57C0 /* Command.swift in Sources */,
 				10E09B05243A74B3002F87F8 /* CleanCopiedUrl.swift in Sources */,
 				10A0B69C241C122B00FB2343 /* Purl.swift in Sources */,
-				1007CBF5243C4151006FE6D2 /* State.swift in Sources */,
+				1007CBF5243C4151006FE6D2 /* Signal.swift in Sources */,
 				108056CF243D80C100DFFAE7 /* Dispatch.swift in Sources */,
+				10C73DC0243D967D009E57C0 /* Request.swift in Sources */,
 				103B5E0D241A9A7600D2001A /* MainView.swift in Sources */,
 				103B5E0A241A980600D2001A /* DropUrl.swift in Sources */,
 				1007CBEE243C2E46006FE6D2 /* Container.swift in Sources */,
+				10C73DBE243D95DD009E57C0 /* AnyError.swift in Sources */,
 				10A3E6FC2415FEBF0091449E /* AppDelegate.swift in Sources */,
 				1073C6E7241C3DE50049CC65 /* Geometry.swift in Sources */,
 				1073C6E9241E74D00049CC65 /* Ref.swift in Sources */,

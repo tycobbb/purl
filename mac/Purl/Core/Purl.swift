@@ -17,17 +17,19 @@ final class Purl {
   }
 
   // -- commands --
-  func cleanUrl(_ initial: String, queue: DispatchQueue = .main, callback: @escaping (String?) -> Void) {
+  func cleanUrl(_ initial: String, queue: DispatchQueue = .main, callback: @escaping (Result<String, AnyError>) -> Void) {
     purl_clean_url(purl, initial, purl_didCleanUrl(ctx:url:), Ref<DidCleanUrl>.toRaw { url in
-      var cleaned: String? = nil
+      let result: Result<String, AnyError>
 
       if let url = url {
-        cleaned = String(cString: url)
+        result = .success(String(cString: url))
         purl_destroy_url(url)
+      } else {
+        result = .failure(AnyError())
       }
 
       queue.async {
-        callback(cleaned)
+        callback(result)
       }
     })
   }

@@ -8,6 +8,16 @@ protocol Vector2 {
   init(x: CGFloat, y: CGFloat)
 }
 
+struct Offset: Vector2 {
+  var x: CGFloat = 0.0
+  var y: CGFloat = 0.0
+
+  init(x: CGFloat = 0.0, y: CGFloat = 0.0) {
+    self.x = x
+    self.y = y
+  }
+}
+
 // -- impls --
 // -- impls/Vector2
 extension Vector2 {

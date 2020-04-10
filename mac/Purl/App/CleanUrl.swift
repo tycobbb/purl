@@ -1,9 +1,11 @@
+import Cocoa
+
 final class CleanUrl: Service.Single {
   // -- deps --
   private let purl: Purl
 
   // -- props --
-  let isLoading = State(false)
+  let request: Signal<Request<String>?> = Signal(nil)
 
   // -- lifetime --
   init(purl: Purl = Purl()) {
@@ -12,12 +14,12 @@ final class CleanUrl: Service.Single {
 
   // -- command --
   func call(_ url: String) -> Void {
-    self.isLoading.value = true
+    self.request.value = .loading
 
-    purl.cleanUrl(url) { cleaned in
-      self.isLoading.value = false
+    purl.cleanUrl(url) { result in
+      self.request.value = .complete(result)
 
-      if let cleaned = cleaned {
+      if case .success(let cleaned) = result {
         ShowNotification().call(cleaned)
       }
     }

@@ -5,7 +5,7 @@ final class CleanUrl: Service.Single {
   private let purl: Purl
 
   // -- props --
-  let request: Signal<Request<String>?> = Signal(nil)
+  let request: State<Request<String>?> = State(nil)
 
   // -- lifetime --
   init(purl: Purl = Purl()) {
@@ -14,10 +14,10 @@ final class CleanUrl: Service.Single {
 
   // -- command --
   func call(_ url: String) -> Void {
-    self.request.value = .loading
+    self.request.push(.loading)
 
     purl.cleanUrl(url) { result in
-      self.request.value = .complete(result)
+      self.request.push(.complete(result))
 
       if case .success(let cleaned) = result {
         ShowNotification().call(cleaned)

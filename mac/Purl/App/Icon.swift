@@ -2,7 +2,7 @@ import Cocoa
 
 final class Icon: NSView, CAAnimationDelegate {
   // -- props
-  private let request: Signal<Request<String>?>
+  private let request: State<Request<String>?>
 
   // -- props/layers
   private let outer = CAShapeLayer()
@@ -16,14 +16,14 @@ final class Icon: NSView, CAAnimationDelegate {
 
   required init(
     frame: NSRect,
-    state: Signal<Request<String>?> = CleanUrl.get().request
+    state: State<Request<String>?> = CleanUrl.get().request
   ) {
     request = state
 
     super.init(frame: frame)
 
     render()
-    request.observe { [weak self] request in
+    request.on { [weak self] request in
       if case .loading = request {
         self?.startAnimating()
       }

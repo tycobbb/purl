@@ -1,10 +1,8 @@
-// -- export --
+// -- types --
+protocol SingleMarker: Service {}
+
 extension Service {
   typealias Single = SingleMarker
-}
-
-// -- types --
-protocol SingleMarker: Service {
 }
 
 // -- impls --

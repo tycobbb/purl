@@ -6,7 +6,7 @@ final class MainView: Service.Single {
   private let icon: Icon
 
   // -- lifetime --
-  init(item: NSStatusItem, dropUrl: DropUrl = .get()) {
+  init(item: NSStatusItem, listen: ListenForUrl = ListenForUrl.get()) {
     guard let view = item.button else {
       fatalError("status item must have a button")
     }
@@ -20,7 +20,7 @@ final class MainView: Service.Single {
     view.addSubview(icon)
 
     // register for drag & drop events
-    dropUrl.addToWindow(window: view.window)
+    listen.start()
   }
 
   // -- queries --

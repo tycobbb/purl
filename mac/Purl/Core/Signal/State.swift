@@ -3,9 +3,9 @@ final class State<T: Equatable>: Signal<T> {
   private(set) var value: T
 
   // -- lifetime --
-  init(_ initial: T) {
+  init(_ initial: T, disposal: Disposal? = nil) {
     value = initial
-    super.init()
+    super.init(disposal: disposal)
   }
 
   // -- commands --
@@ -17,8 +17,10 @@ final class State<T: Equatable>: Signal<T> {
   }
 
   // -- queries --
-  override func on(_ observer: @escaping (T) -> Void) {
+  @discardableResult
+  override func on(_ observer: @escaping (T) -> Void) -> Self {
     observer(value)
     super.on(observer)
+    return self
   }
 }

@@ -18,7 +18,7 @@ final class Purl {
 
   // -- commands --
   func cleanUrl(_ initial: String, queue: DispatchQueue = .main, callback: @escaping (Result<String, AnyError>) -> Void) {
-    purl_clean_url(purl, initial, purl_didCleanUrl(ctx:url:), Ref<DidCleanUrl>.toRaw { url in
+    purl_clean_url(purl, initial, purl_didCleanUrl(ctx:url:), Box<DidCleanUrl>.wrap({ url in
       let result: Result<String, AnyError>
 
       if let url = url {
@@ -31,12 +31,12 @@ final class Purl {
       queue.async {
         callback(result)
       }
-    })
+    }))
   }
 }
 
 // -- events --
 private func purl_didCleanUrl(ctx: UnsafeMutableRawPointer!, url: UnsafePointer<Int8>?) {
   precondition(ctx != nil, "libpurl must pass context through callback")
-  Ref<Purl.DidCleanUrl>.fromRaw(ctx)(url)
+  Box<Purl.DidCleanUrl>.unwrap(ctx)(url)
 }

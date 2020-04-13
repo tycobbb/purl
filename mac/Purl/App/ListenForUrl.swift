@@ -2,22 +2,29 @@ import Cocoa
 
 final class ListenForUrl: Service.Single {
   // -- deps --
-  let cleanUrl: CleanUrl
+  private let pasteboard: NSPasteboard
+  private let cleanUrl: CleanUrl
 
   // -- props --
-  private let shortcut = Shortcut()
+  private var signal: Signal<()>?
 
   // -- lifetime --
-  init(cleanUrl: CleanUrl = CleanUrl.get()) {
+  init(pasteboard: NSPasteboard = .general, cleanUrl: CleanUrl = CleanUrl.get()) {
+    self.pasteboard = pasteboard
     self.cleanUrl = cleanUrl
   }
 
   // -- command --
   func start() {
-    shortcut.listen().on { _ in
-      if let url = NSPasteboard.general.string(forType: .string) {
-        print("copied \(url)")
+    var current: String?
+
+    signal = every(seconds: 0.5).on { [weak self] _ in
+      guard let url = self?.pasteboard.string(forType: .URL), current != url else {
+        return
       }
+
+      current = url
+      self?.cleanUrl.call(url)
     }
   }
 

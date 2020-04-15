@@ -2,6 +2,8 @@
 extern crate hyper;
 extern crate hyper_tls;
 extern crate libc;
+#[macro_use]
+extern crate thiserror;
 extern crate tokio;
 
 // -- modules --
@@ -66,16 +68,21 @@ pub extern "C" fn purl_clean_url(
 
     let ctx = Context(ctx_cptr);
     purl.runtime().spawn(async move {
-        let mut url = Url::new(&initial);
-        url.clean(&http::client()).await;
-
-        let cleaned = guard!(url.cleaned(), else {
-            println!("could not clean url: {0}", initial);
+        let mut url = guard!(Url::new(&initial), else |err| {
+            println!("could not parse url: {0}", err);
             callback(ctx.0, std::ptr::null());
             return
         });
 
-        let cleaned_cstr = guard!(std::ffi::CString::new(cleaned), else |err| {
+        url.clean(&http::client()).await;
+
+        let cleaned = guard!(url.cleaned, else |err| {
+            println!("could not clean url: {0}", err);
+            callback(ctx.0, std::ptr::null());
+            return
+        });
+
+        let cleaned_cstr = guard!(std::ffi::CString::new(cleaned.to_string()), else |err| {
             println!("could not encode cstr: {0}", err);
             callback(ctx.0, std::ptr::null());
             return
@@ -102,7 +109,7 @@ mod tests {
     use super::*;
 
     #[test]
-    fn it_cleans_a_url_async() {
+    fn cleans_a_url_async() {
         let purl = purl_create();
         let url = "https://httpbin.org/get\0";
         purl_clean_url(purl, url.as_ptr() as *const i8, |_, _| {}, std::ptr::null());

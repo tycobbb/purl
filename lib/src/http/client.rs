@@ -1,28 +1,26 @@
 use super::{Response, Uri};
-use hyper;
-use hyper_tls;
+use hyper as h;
+use hyper_tls as h_tls;
 
 // -- types --
-pub struct Client(
-    hyper::Client<hyper_tls::HttpsConnector<hyper::client::HttpConnector>, hyper::Body>,
-);
+pub struct Client(h::Client<h_tls::HttpsConnector<h::client::HttpConnector>, h::Body>);
 
 #[derive(Error, Debug)]
 pub enum Error {
     #[error(transparent)]
-    FailedToBuildRequest(#[from] hyper::http::Error),
+    CouldNotBuildRequest(#[from] h::http::Error),
     #[error(transparent)]
-    RequestFailed(#[from] hyper::Error),
+    CouldNotMakeRequest(#[from] h::Error),
 }
 
 // -- impls --
 pub fn client() -> Client {
-    return Client(hyper::Client::builder().build(hyper_tls::HttpsConnector::new()));
+    return Client(h::Client::builder().build(h_tls::HttpsConnector::new()));
 }
 
 impl Client {
     pub async fn head(&self, uri: &Uri) -> Result<Response, Error> {
-        let req = hyper::Request::head(uri).body(hyper::Body::empty())?;
+        let req = h::Request::head(uri.parsed()).body(h::Body::empty())?;
         let res = self.0.request(req).await?;
         return Ok(Response::from(res));
     }

@@ -11,7 +11,7 @@
 		1007CBE8243C2ACC006FE6D2 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1007CBE7243C2ACC006FE6D2 /* Icon.swift */; };
 		1007CBEC243C2E19006FE6D2 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1007CBEB243C2E19006FE6D2 /* Service.swift */; };
 		1007CBEE243C2E46006FE6D2 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1007CBED243C2E46006FE6D2 /* Container.swift */; };
-		1007CBF1243C2FF2006FE6D2 /* CleanUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1007CBF0243C2FF2006FE6D2 /* CleanUrl.swift */; };
+		1007CBF1243C2FF2006FE6D2 /* AddUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1007CBF0243C2FF2006FE6D2 /* AddUrl.swift */; };
 		1007CBF3243C343F006FE6D2 /* Single.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1007CBF2243C343F006FE6D2 /* Single.swift */; };
 		1007CBF5243C4151006FE6D2 /* Signal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1007CBF4243C4151006FE6D2 /* Signal.swift */; };
 		100ABB5D244277F3005E2119 /* ListenForUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100ABB5C244277F3005E2119 /* ListenForUrl.swift */; };
@@ -57,7 +57,7 @@
 		1007CBE7243C2ACC006FE6D2 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
 		1007CBEB243C2E19006FE6D2 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		1007CBED243C2E46006FE6D2 /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
-		1007CBF0243C2FF2006FE6D2 /* CleanUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleanUrl.swift; sourceTree = "<group>"; };
+		1007CBF0243C2FF2006FE6D2 /* AddUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUrl.swift; sourceTree = "<group>"; };
 		1007CBF2243C343F006FE6D2 /* Single.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Single.swift; sourceTree = "<group>"; };
 		1007CBF4243C4151006FE6D2 /* Signal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signal.swift; sourceTree = "<group>"; };
 		100ABB5C244277F3005E2119 /* ListenForUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListenForUrl.swift; sourceTree = "<group>"; };
@@ -226,7 +226,7 @@
 			children = (
 				103B5E0C241A9A7600D2001A /* MainView.swift */,
 				1007CBE7243C2ACC006FE6D2 /* Icon.swift */,
-				1007CBF0243C2FF2006FE6D2 /* CleanUrl.swift */,
+				1007CBF0243C2FF2006FE6D2 /* AddUrl.swift */,
 				100ABB5C244277F3005E2119 /* ListenForUrl.swift */,
 				10E09AFF243A7468002F87F8 /* Menu */,
 				108056C7243D6F1300DFFAE7 /* Notification */,
@@ -380,7 +380,7 @@
 				108056CB243D6FD600DFFAE7 /* ShowNotification.swift in Sources */,
 				10E09B03243A749B002F87F8 /* ShowPreferences.swift in Sources */,
 				10E09B01243A7472002F87F8 /* QuitApplication.swift in Sources */,
-				1007CBF1243C2FF2006FE6D2 /* CleanUrl.swift in Sources */,
+				1007CBF1243C2FF2006FE6D2 /* AddUrl.swift in Sources */,
 				108056C9243D6F2600DFFAE7 /* NotificationView.swift in Sources */,
 				1007CBF3243C343F006FE6D2 /* Single.swift in Sources */,
 			);

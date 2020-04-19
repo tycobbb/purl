@@ -1,19 +1,20 @@
-use hyper;
+use hyper as h;
+use hyper::http::header as h_header;
 
 // -- types --
-pub struct Response(hyper::Response<hyper::Body>);
+pub struct Response(h::Response<h::Body>);
 
 #[derive(Error, Debug)]
 pub enum Error {
     #[error("Request had no `Location` header.")]
     MissingLocation,
     #[error(transparent)]
-    CouldNotParseLocation(#[from] hyper::http::header::ToStrError),
+    CouldNotParseLocation(#[from] h_header::ToStrError),
 }
 
 // -- impls --
-impl From<hyper::Response<hyper::Body>> for Response {
-    fn from(res: hyper::Response<hyper::Body>) -> Response {
+impl From<h::Response<h::Body>> for Response {
+    fn from(res: h::Response<h::Body>) -> Response {
         return Response(res);
     }
 }
@@ -33,7 +34,6 @@ impl Response {
         return Ok(location);
     }
 
-    // -- impls/queries/helpers
     fn header(&self, key: &str) -> Option<&hyper::http::HeaderValue> {
         return self.0.headers().get(key);
     }

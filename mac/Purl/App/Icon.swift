@@ -16,7 +16,7 @@ final class Icon: NSView, CAAnimationDelegate {
 
   required init(
     frame: NSRect,
-    state: State<Request<String>?> = CleanUrl.get().request
+    state: State<Request<String>?> = AddUrl.get().request
   ) {
     request = state
 

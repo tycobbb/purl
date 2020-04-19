@@ -2,10 +2,10 @@ import Cocoa
 
 final class CleanCopiedUrl: Command {
   // -- deps --
-  private let cleanUrl: CleanUrl
+  private let cleanUrl: AddUrl
 
   // -- lifetime --
-  init(cleanUrl: CleanUrl = .get()) {
+  init(cleanUrl: AddUrl = .get()) {
     self.cleanUrl = cleanUrl
   }
 

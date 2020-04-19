@@ -1,48 +1,69 @@
-use hyper;
+use hyper as h;
+use hyper::http::uri as h_uri;
 
 // -- types --
-pub type Uri = hyper::Uri;
+#[derive(Clone, Debug, PartialEq)]
+pub struct Uri {
+    raw: String,
+    uri: h::http::Uri,
+}
 
 #[derive(Error, Debug)]
 pub enum Error {
     #[error(transparent)]
-    IsInvalid(#[from] hyper::http::uri::InvalidUri),
+    IsInvalid(#[from] h_uri::InvalidUri),
     #[error("URI is not absolute.")]
     IsNotAbsolute,
 }
 
 // -- impls --
-pub fn uri(url: &str) -> Result<Uri, Error> {
-    let uri = url.parse::<Uri>()?;
-    if uri.scheme_str().is_none() || uri.host().is_none() {
-        return Err(Error::IsNotAbsolute);
+impl Uri {
+    // -- impls/lifetime
+    pub fn new(string: &str) -> Result<Uri, Error> {
+        let parsed = string.parse::<h::Uri>()?;
+
+        if parsed.scheme_str().is_none() || parsed.host().is_none() {
+            return Err(Error::IsNotAbsolute);
+        }
+
+        return Ok(Uri {
+            raw: string.to_owned(),
+            uri: parsed,
+        });
     }
 
-    return Ok(uri);
+    // -- impls/queries
+    // pub fn raw(&self) -> &str {
+    //     return &self.raw;
+    // }
+
+    pub fn parsed(&self) -> &h::Uri {
+        return &self.uri;
+    }
 }
 
 // -- tests --
 #[cfg(test)]
 mod tests {
-    use super::{uri, Error};
+    use super::{Error, Uri};
 
     #[test]
-    fn create_a_valid_uri() {
-        let url = uri("https://httpbin.org/get");
-        assert!(url.is_ok());
+    fn validates_a_uri() {
+        let uri = Uri::new("https://httpbin.org/get");
+        assert!(uri.is_ok());
     }
 
     #[test]
-    fn cant_create_an_relative_uri() {
-        let url = uri("this is not a url");
-        assert!(url.is_err());
-        assert_ne!(url, Err(Error::IsNotAbsolute));
+    fn invalidates_a_non_uri() {
+        let uri = Uri::new("this is not a uri");
+        assert!(uri.is_err());
+        assert_ne!(uri, Err(Error::IsNotAbsolute));
     }
 
     #[test]
-    fn cant_create_an_invalid_uri() {
-        let url = uri("website");
-        assert_eq!(url, Err(Error::IsNotAbsolute));
+    fn invalidates_a_relative_uri() {
+        let uri = Uri::new("website");
+        assert_eq!(uri, Err(Error::IsNotAbsolute));
     }
 
     // a good-enough-impl of PartialEq for these tests

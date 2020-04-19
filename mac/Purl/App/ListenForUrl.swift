@@ -3,13 +3,13 @@ import Cocoa
 final class ListenForUrl: Service.Single {
   // -- deps --
   private let pasteboard: NSPasteboard
-  private let cleanUrl: CleanUrl
+  private let cleanUrl: AddUrl
 
   // -- props --
   private var signal: Signal<()>?
 
   // -- lifetime --
-  init(pasteboard: NSPasteboard = .general, cleanUrl: CleanUrl = CleanUrl.get()) {
+  init(pasteboard: NSPasteboard = .general, cleanUrl: AddUrl = AddUrl.get()) {
     self.pasteboard = pasteboard
     self.cleanUrl = cleanUrl
   }
@@ -19,7 +19,7 @@ final class ListenForUrl: Service.Single {
     var current: String?
 
     signal = every(seconds: 0.5).on { [weak self] _ in
-      guard let url = self?.pasteboard.string(forType: .URL), current != url else {
+      guard let url = self?.pasteboard.string(forType: .string), current != url else {
         return
       }
 

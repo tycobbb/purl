@@ -33,9 +33,9 @@ impl Uri {
     }
 
     // -- impls/queries
-    // pub fn raw(&self) -> &str {
-    //     return &self.raw;
-    // }
+    pub fn raw(&self) -> &str {
+        return &self.raw;
+    }
 
     pub fn parsed(&self) -> &h::Uri {
         return &self.uri;

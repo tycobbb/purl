@@ -1,11 +1,12 @@
 use super::clean;
-use crate::http;
+use crate::http::uri::{self, Uri};
+use std::sync::Arc;
 
 // -- types --
 #[derive(Debug)]
 pub struct Url {
-    pub initial: http::Uri,
-    pub cleaned: Option<Result<http::Uri, Error>>,
+    pub initial: Arc<Uri>,
+    pub cleaned: Option<Result<Arc<Uri>, Arc<Error>>>,
 }
 
 #[derive(Error, Debug)]
@@ -17,16 +18,19 @@ pub enum Error {
 // -- impls --
 impl Url {
     // -- lifetime --
-    pub fn new(initial: &str) -> Result<Self, http::uri::Error> {
+    pub fn new(initial: &str) -> Result<Self, uri::Error> {
         return Ok(Url {
-            initial: http::Uri::new(initial.trim())?,
+            initial: Arc::new(Uri::new(initial.trim())?),
             cleaned: None,
         });
     }
 
-    // -- commands --
-    pub fn clean(&mut self, cleaned: Result<http::Uri, clean::Error>) {
-        self.cleaned = Some(cleaned.map_err(Error::from));
+    // -- operators --
+    pub fn clean(&self, cleaned: Result<Uri, clean::Error>) -> Url {
+        return Url {
+            initial: self.initial.clone(),
+            cleaned: Some(cleaned.map_err(Error::from).map(Arc::new).map_err(Arc::new)),
+        };
     }
 }
 

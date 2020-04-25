@@ -5,7 +5,7 @@ use std::sync::{Arc, RwLock};
 // -- types --
 #[derive(Debug)]
 pub struct Queue {
-    urls: Arc<RwLock<Vec<Url>>>,
+    urls: Arc<RwLock<Vec<Arc<Url>>>>,
 }
 
 // -- impls --
@@ -20,20 +20,25 @@ impl Queue {
     // -- commands --
     pub fn add(&self, url: Url) -> usize {
         let mut urls = self.urls.write().unwrap();
-        urls.push(url);
+        urls.push(Arc::new(url));
         return urls.len() - 1;
     }
 
     pub fn clean(&self, id: usize, cleaned: Result<http::Uri, clean::Error>) {
         let mut urls = self.urls.write().unwrap();
-        urls[id].clean(cleaned);
+        urls[id] = Arc::new(urls[id].clean(cleaned))
     }
 
     // -- queries --
-    // pub fn url(&self, id: usize) -> Url {
-    //     let urls = self.urls.read().unwrap();
-    //     return urls[id].clone();
-    // }
+    pub fn loading(&self) -> bool {
+        let urls = self.urls.read().unwrap();
+        return urls.iter().any(|u| u.cleaned.is_none());
+    }
+
+    pub fn url(&self, id: usize) -> Arc<Url> {
+        let urls = self.urls.read().unwrap();
+        return urls[id].clone();
+    }
 
     pub fn len(&self) -> usize {
         let urls = self.urls.read().unwrap();
@@ -52,8 +57,12 @@ mod tests {
         let queue = Queue::new();
         let url = Url::new("https://test.com").unwrap();
 
-        queue.add(url);
+        let id = queue.add(url);
+        assert_eq!(id, 0);
         assert_eq!(queue.len(), 1);
-        // assert_eq!(queue.get(0).initial, "https://test.com");
+
+        let url = queue.url(0);
+        assert_eq!(url.initial.raw(), "https://test.com");
+        assert!(url.cleaned.is_none());
     }
 }

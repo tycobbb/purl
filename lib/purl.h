@@ -38,6 +38,9 @@ purl_url_t
 purl_queue_get_url(purl_queue_t, purl_id_t id);
 
 // -- url --
+void
+purl_url_drop(purl_url_t);
+
 purl_uri_t
 purl_url_initial(purl_url_t url);
 
@@ -47,5 +50,9 @@ purl_url_cleaned_ok(purl_url_t url);
 purl_err_t
 purl_url_cleaned_err(purl_url_t url);
 
-// -- etc --
-void purl_destroy_url(purl_url_t url);
+// -- uri --
+void
+purl_uri_drop(purl_uri_t uri);
+
+void
+purl_err_drop(purl_err_t err);

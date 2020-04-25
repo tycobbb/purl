@@ -12,11 +12,9 @@ pub struct Purl {
 // -- impls --
 impl Purl {
     pub fn new() -> Purl {
-        use tokio::runtime;
-
         return Purl {
             queue: Queue::new(),
-            runtime: runtime::Runtime::new().unwrap(),
+            runtime: tokio::runtime::Runtime::new().unwrap(),
         };
     }
 
@@ -26,17 +24,17 @@ impl Purl {
         initial: &'static str,
         callback: impl FnOnce(usize) + Send + 'static,
     ) -> Result<(), http::uri::Error> {
-        let url = Url::new(initial)?;
-        let uri = url.initial.clone();
-
         let urls = &self.queue;
-        let url_id = urls.add(url);
+        let url_id = urls.add(Url::new(initial)?);
+        let uri = urls.url(url_id).initial.clone();
 
-        self.runtime.spawn(async move {
+        let clean = async move {
             let cleaned = url::clean(&uri).await;
             urls.clean(url_id, cleaned);
             callback(url_id);
-        });
+        };
+
+        self.runtime.spawn(clean);
 
         return Ok(());
     }

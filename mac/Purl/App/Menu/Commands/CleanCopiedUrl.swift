@@ -2,17 +2,17 @@ import Cocoa
 
 final class CleanCopiedUrl: Command {
   // -- deps --
-  private let cleanUrl: AddUrl
+  private let purl: Purl
 
   // -- lifetime --
-  init(cleanUrl: AddUrl = .get()) {
-    self.cleanUrl = cleanUrl
+  init(purl: Purl = .get()) {
+    self.purl = purl
   }
 
   // -- command --
   func call() {
     if let url = NSPasteboard.general.string(forType: .string) {
-      cleanUrl.call(url)
+      self.purl.addUrl(url)
     }
   }
 

@@ -1,10 +1,10 @@
 import Cocoa
 
 final class Icon: NSView, CAAnimationDelegate {
-  // -- props
-  private let request: State<Request<String>?>
+  // -- deps --
+  private let request: State<Request<Purl.Uri, Purl.Error>?>
 
-  // -- props/layers
+  // -- props --
   private let outer = CAShapeLayer()
   private let inner = CAShapeLayer()
   private let check = CAShapeLayer()
@@ -16,7 +16,7 @@ final class Icon: NSView, CAAnimationDelegate {
 
   required init(
     frame: NSRect,
-    state: State<Request<String>?> = AddUrl.get().request
+    state: State<Request<Purl.Uri, Purl.Error>?> = Purl.get().request
   ) {
     request = state
 

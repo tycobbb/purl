@@ -2,16 +2,16 @@ import Cocoa
 
 final class ListenForUrl: Service.Single {
   // -- deps --
+  private let purl: Purl
   private let pasteboard: NSPasteboard
-  private let cleanUrl: AddUrl
 
   // -- props --
   private var signal: Signal<()>?
 
   // -- lifetime --
-  init(pasteboard: NSPasteboard = .general, cleanUrl: AddUrl = AddUrl.get()) {
+  init(purl: Purl = .get(), pasteboard: NSPasteboard = .general) {
+    self.purl = purl
     self.pasteboard = pasteboard
-    self.cleanUrl = cleanUrl
   }
 
   // -- command --
@@ -24,7 +24,7 @@ final class ListenForUrl: Service.Single {
       }
 
       current = url
-      self?.cleanUrl.call(url)
+      self?.purl.addUrl(url)
     }
   }
 

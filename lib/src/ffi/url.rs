@@ -63,7 +63,10 @@ use std::ffi::CString;
 fn into_raw_cstr(string: &str) -> *const c_char {
     return match CString::new(string) {
         Ok(cstr) => cstr.into_raw(),
-        Err(err) => std::ptr::null(),
+        Err(err) => {
+            println!("error encoding c string: {:?}", err);
+            std::ptr::null()
+        }
     };
 }
 

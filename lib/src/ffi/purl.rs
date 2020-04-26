@@ -1,6 +1,7 @@
 use crate::purl::Purl;
-use crate::queue::Queue;
+use crate::url::Url;
 use std::convert::TryInto;
+use std::sync::Arc;
 
 // -- types --
 struct Context(*const std::ffi::c_void);
@@ -54,13 +55,35 @@ pub extern "C" fn purl_add_url(
 }
 
 #[no_mangle]
-pub extern "C" fn purl_get_queue(ptr: *const Purl) -> *const Queue {
+pub extern "C" fn purl_is_loading(ptr: *const Purl) -> bool {
     let purl = unsafe {
         assert!(!ptr.is_null());
         &*ptr
     };
 
-    return purl.queue();
+    return purl.queue().loading();
+}
+
+#[no_mangle]
+pub extern "C" fn purl_size(ptr: *const Purl) -> u32 {
+    let purl = unsafe {
+        assert!(!ptr.is_null());
+        &*ptr
+    };
+
+    // TODO: how to handle this error?
+    return purl.queue().len().try_into().unwrap();
+}
+
+#[no_mangle]
+pub extern "C" fn purl_get_url(ptr: *const Purl, id: u32) -> *const Url {
+    let purl = unsafe {
+        assert!(!ptr.is_null());
+        &*ptr
+    };
+
+    // TODO: how to handle this error?
+    return Arc::into_raw(purl.queue().url(id.try_into().unwrap()));
 }
 
 // -- impls/context

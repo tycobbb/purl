@@ -1,7 +1,3 @@
 // -- types --
-struct AnyError: Error {
-}
-
-// -- impls --
-extension AnyError: Equatable {
+struct AnyError: Error, Equatable {
 }

@@ -1,11 +1,11 @@
 import Cocoa
 
-final class NotificationView: NSViewController {
+final class NotificationView: NSViewController, Configurable, FromStoryboard {
   // -- props --
   private var url: String! {
     didSet {
       if isViewLoaded {
-        configure()
+        render()
       }
     }
   }
@@ -17,19 +17,19 @@ final class NotificationView: NSViewController {
   // -- lifecycle --
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.configure()
+
+    if self.url != nil {
+      render()
+    }
   }
 
-  // -- commands --
-  private func configure() {
+  // -- layout --
+  private func render() {
     label.stringValue = url
   }
 
-  // -- factories --
-  static func instance(_ url: String) -> NotificationView {
-    let storyboard = NSStoryboard(name: String(describing: self), bundle: .main)
-    let controller = storyboard.instantiateInitialController() as! NotificationView
-    controller.url = url
-    return controller
+  // -- Configurable --
+  func configure(with model: String) {
+    url = model
   }
 }

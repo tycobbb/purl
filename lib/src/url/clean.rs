@@ -2,7 +2,7 @@ use crate::http;
 
 #[derive(Error, Debug)]
 pub enum Error {
-    #[error("Request failed with status code: ${0}")]
+    #[error("Request failed with status code: {0}")]
     RequestFailed(u16),
     #[error(transparent)]
     CouldNotRequestUrl(#[from] http::client::Error),

@@ -19,12 +19,10 @@ final class ListenForUrl: Service.Single {
     var current: String?
 
     signal = every(seconds: 0.5).on { [weak self] _ in
-      guard let url = self?.pasteboard.string(forType: .string), current != url else {
-        return
+      if let url = self?.pasteboard.string(forType: .string), current != url {
+        current = url
+        self?.purl.addUrl(url)
       }
-
-      current = url
-      self?.purl.addUrl(url)
     }
   }
 

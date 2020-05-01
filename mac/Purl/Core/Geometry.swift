@@ -74,6 +74,13 @@ extension Vector2 {
     )
   }
 
+  func max(_ other: Vector2) -> Self {
+    return .init(
+      x: Swift.max(x, other.x),
+      y: Swift.max(y, other.y)
+    )
+  }
+
   // -- factories --
   static func square(_ size: CGFloat) -> Self {
     return .init(

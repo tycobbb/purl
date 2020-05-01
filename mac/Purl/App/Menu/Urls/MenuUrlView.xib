@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15705" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15705"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="MenuUrlView" customModule="Purl" customModuleProvider="target">
+            <connections>
+                <outlet property="cleaned" destination="YJo-RR-w7n" id="4EW-ac-vdW"/>
+                <outlet property="initial" destination="c8C-mP-b4R" id="N9X-MK-ZFA"/>
+                <outlet property="view" destination="lsh-JD-XYK" id="A4v-6t-RCO"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="1000" verticalStackHuggingPriority="250" detachesHiddenViews="YES" id="lsh-JD-XYK">
+            <rect key="frame" x="0.0" y="0.0" width="33" height="40"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="c8C-mP-b4R">
+                    <rect key="frame" x="-2" y="16" width="37" height="24"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" allowsUndo="NO" title="Label" id="4gq-4r-Y69">
+                        <font key="font" usesAppearanceFont="YES"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="YJo-RR-w7n">
+                    <rect key="frame" x="-2" y="0.0" width="37" height="16"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="3ci-he-D2W">
+                        <font key="font" usesAppearanceFont="YES"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+            </subviews>
+            <constraints>
+                <constraint firstItem="c8C-mP-b4R" firstAttribute="width" secondItem="lsh-JD-XYK" secondAttribute="width" id="FZX-yK-h5B"/>
+            </constraints>
+            <visibilityPriorities>
+                <integer value="1000"/>
+                <integer value="1000"/>
+            </visibilityPriorities>
+            <customSpacing>
+                <real value="3.4028234663852886e+38"/>
+                <real value="3.4028234663852886e+38"/>
+            </customSpacing>
+            <point key="canvasLocation" x="-147" y="104"/>
+        </stackView>
+    </objects>
+</document>

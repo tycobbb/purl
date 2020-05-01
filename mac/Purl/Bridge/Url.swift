@@ -1,6 +1,6 @@
 extension Purl {
   final class Url {
-    typealias Id = UInt32
+    typealias Id = Int
 
     // -- props --
     private let ptr: purl_url_t
@@ -16,17 +16,24 @@ extension Purl {
 
     // -- queries --
     var initial: Uri {
-      return Uri(purl_url_initial(ptr))
+      return uri(from: purl_url_initial(ptr))
     }
 
     var cleaned: Result<Uri, Url.Error>? {
       if let ptr = purl_url_cleaned_ok(ptr) {
-        return .success(Uri(ptr))
+        return .success(uri(from: ptr))
       } else if let ptr = purl_url_cleaned_err(ptr) {
         return .failure(Url.Error(ptr))
       } else {
         return nil
       }
+    }
+
+    // -- queries/helpers
+    private func uri(from ptr: purl_uri_t) -> Uri {
+      let uri = String(cString: ptr)
+      purl_uri_drop(ptr)
+      return uri
     }
   }
 }

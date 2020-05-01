@@ -8,6 +8,7 @@ final class Purl: Service.Single {
   private let ptr: purl_t
 
   // -- props --
+  let changes: State<Nothing> = State(.nothing)
   let request: State<Request<Uri, Error>?> = State(nil)
 
   // -- lifetime --
@@ -24,22 +25,30 @@ final class Purl: Service.Single {
     func inner(callback: @escaping Callback) {
       let raw = Box<Callback>.wrap(callback)
 
-      if purl_add_url(ptr, initial, purl_callback, raw) {
-        request.push(.loading)
-      } else {
+      // try and add a url. fails if the string is not a valid url
+      guard purl_add_url(ptr, initial, purl_callback, raw) else {
         _ = Box<Purl.Callback>.unwrap(raw)
+        return
       }
+
+      // push changes if so
+      changes.push(.nothing)
+      request.push(.loading)
     }
 
     inner { id in
       queue.async {
-        let cleaned = self.url(id).cleaned
+        // push a change
+        self.changes.push(.nothing)
+
+        // wait until all requests finish
         if purl_is_loading(self.ptr) {
           return
         }
 
+        // and push the result of the last request
         let result: Result<Uri, Error>
-        if let cleaned = cleaned {
+        if let cleaned = self.url(Int(id)).cleaned {
           result = cleaned.mapError(Error.url)
         } else {
           result = .failure(.unknown)
@@ -52,11 +61,11 @@ final class Purl: Service.Single {
 
   // -- queries --
   var size: Url.Id {
-    return purl_size(ptr)
+    return Int(purl_size(ptr))
   }
 
   func url(_ id: Url.Id) -> Url {
-    return Url(purl_get_url(ptr, id))
+    return Url(purl_get_url(ptr, UInt32(id)))
   }
 
   // -- Service.Single --

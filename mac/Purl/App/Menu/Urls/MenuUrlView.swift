@@ -2,18 +2,26 @@ import Cocoa
 
 class MenuUrlView: NSCollectionViewItem, Configurable, Identifiable {
   // -- constants --
-  static let height: CGFloat = 40.0
+  static let height: CGFloat = 36.0
 
   // -- outlets --
   @IBOutlet
-  private var initial: NSTextField!
-
+  private var name: NSTextField!
   @IBOutlet
-  private var cleaned: NSTextField!
+  private var info: NSTextField!
 
   // -- Configurable --
   func configure(with model: Purl.Url) {
-    self.initial.stringValue = model.initial
-    self.cleaned.stringValue = (try? model.cleaned?.get()) ?? ""
+    switch model.cleaned {
+    case .success(let cleaned):
+      name.stringValue = cleaned
+      info.stringValue = "Original: \(model.initial)"
+    case .failure(let error):
+      name.stringValue = model.initial
+      info.stringValue = "Error: \(error)"
+    case .none:
+      name.stringValue = model.initial
+      info.stringValue = "Cleaning..."
+    }
   }
 }

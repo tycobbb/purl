@@ -10,34 +10,56 @@
         <scene sceneID="98T-Dx-5se">
             <objects>
                 <viewController storyboardIdentifier="MenuUrlListView" id="ueY-jS-wp2" customClass="MenuUrlListView" customModule="Purl" customModuleProvider="target" sceneMemberID="viewController">
-                    <stackView key="view" distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="1000" verticalStackHuggingPriority="1000" misplaced="YES" detachesHiddenViews="YES" id="MvY-Ex-O1z">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="103"/>
+                    <stackView key="view" distribution="fill" orientation="vertical" alignment="leading" spacing="3" horizontalStackHuggingPriority="1000" verticalStackHuggingPriority="1000" detachesHiddenViews="YES" id="MvY-Ex-O1z">
+                        <rect key="frame" x="0.0" y="0.0" width="490" height="92"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="fmJ-AV-ewu">
-                                <rect key="frame" x="18" y="82" width="414" height="16"/>
-                                <textFieldCell key="cell" title="Purl" id="LsL-y2-zDI">
-                                    <font key="font" metaFont="systemSemibold" size="13"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="6UU-Iy-tIj" userLabel="Fallback">
-                                <rect key="frame" x="18" y="58" width="414" height="16"/>
-                                <textFieldCell key="cell" title="There are no recent URLs. Copy something." id="ZNp-28-tIz">
-                                    <font key="font" usesAppearanceFont="YES"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="MQ1-jD-VCk" userLabel="Header">
+                                <rect key="frame" x="0.0" y="75" width="490" height="17"/>
+                                <subviews>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="fmJ-AV-ewu">
+                                        <rect key="frame" x="18" y="0.0" width="454" height="17"/>
+                                        <textFieldCell key="cell" title="Purl: Recent" id="LsL-y2-zDI">
+                                            <font key="font" metaFont="system" size="14"/>
+                                            <color key="textColor" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="fmJ-AV-ewu" firstAttribute="top" secondItem="MQ1-jD-VCk" secondAttribute="top" id="1rg-KX-pWm"/>
+                                    <constraint firstAttribute="trailing" secondItem="fmJ-AV-ewu" secondAttribute="trailing" constant="20" id="3x2-Sm-Fhc"/>
+                                    <constraint firstAttribute="bottom" secondItem="fmJ-AV-ewu" secondAttribute="bottom" id="93v-nX-mOg"/>
+                                    <constraint firstItem="fmJ-AV-ewu" firstAttribute="leading" secondItem="MQ1-jD-VCk" secondAttribute="leading" constant="20" id="Erl-KO-XPQ"/>
+                                </constraints>
+                            </customView>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="Grj-Gs-Qr7" userLabel="Fallback">
+                                <rect key="frame" x="0.0" y="55" width="490" height="17"/>
+                                <subviews>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="6UU-Iy-tIj">
+                                        <rect key="frame" x="18" y="0.0" width="454" height="17"/>
+                                        <textFieldCell key="cell" title="There are no recent URLs. Copy something." id="ZNp-28-tIz">
+                                            <font key="font" metaFont="system" size="14"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="6UU-Iy-tIj" firstAttribute="leading" secondItem="Grj-Gs-Qr7" secondAttribute="leading" constant="20" id="1GC-eY-hDA"/>
+                                    <constraint firstItem="6UU-Iy-tIj" firstAttribute="top" secondItem="Grj-Gs-Qr7" secondAttribute="top" id="5Dh-9r-y74"/>
+                                    <constraint firstAttribute="trailing" secondItem="6UU-Iy-tIj" secondAttribute="trailing" constant="20" id="F3M-hq-lMe"/>
+                                    <constraint firstAttribute="bottom" secondItem="6UU-Iy-tIj" secondAttribute="bottom" id="G0q-UV-FTF"/>
+                                </constraints>
+                            </customView>
                             <scrollView wantsLayer="YES" verticalHuggingPriority="1000" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QUB-Zx-eIH">
-                                <rect key="frame" x="20" y="0.0" width="410" height="50"/>
+                                <rect key="frame" x="0.0" y="2" width="490" height="50"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="PqF-sJ-6kr">
-                                    <rect key="frame" x="0.0" y="0.0" width="410" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="490" height="50"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <collectionView id="CzH-NT-llb">
-                                            <rect key="frame" x="0.0" y="0.0" width="410" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="490" height="50"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                             <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" id="Pu7-PY-fcx">
                                                 <size key="itemSize" width="50" height="50"/>
@@ -64,10 +86,10 @@
                                 </scroller>
                             </scrollView>
                         </subviews>
-                        <edgeInsets key="edgeInsets" left="20" right="20" top="0.0" bottom="0.0"/>
+                        <edgeInsets key="edgeInsets" left="0.0" right="0.0" top="0.0" bottom="2"/>
                         <visibilityPriorities>
                             <integer value="1000"/>
-                            <real value="750"/>
+                            <integer value="1000"/>
                             <integer value="1000"/>
                         </visibilityPriorities>
                         <customSpacing>
@@ -77,9 +99,8 @@
                         </customSpacing>
                     </stackView>
                     <connections>
-                        <outlet property="header" destination="fmJ-AV-ewu" id="EZv-RG-slz"/>
                         <outlet property="list" destination="CzH-NT-llb" id="B6M-ni-0iN"/>
-                        <outlet property="listFallback" destination="6UU-Iy-tIj" id="0N7-jn-1Ta"/>
+                        <outlet property="listFallback" destination="Grj-Gs-Qr7" id="Tyb-hk-N7d"/>
                         <outlet property="listHeight" destination="joJ-KE-qf8" id="Mwy-el-WV7"/>
                     </connections>
                 </viewController>

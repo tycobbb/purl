@@ -7,17 +7,13 @@ final class MenuUrlListView: NSViewController, FromStoryboard {
 
   // -- props --
   @IBOutlet
-  private var header: NSTextField!
-
-  @IBOutlet
   private var list: NSCollectionView!
-
-  @IBOutlet
-  private var listFallback: NSTextField!
 
   @IBOutlet
   private var listHeight: NSLayoutConstraint!
 
+  @IBOutlet
+  private var listFallback: NSView!
 
   // -- NSViewController --
   override func viewDidLoad() {
@@ -37,13 +33,11 @@ final class MenuUrlListView: NSViewController, FromStoryboard {
 
   override func updateViewConstraints() {
     super.updateViewConstraints()
-
     listHeight.constant = list.collectionViewLayout?.collectionViewContentSize.height ?? 0
   }
 
   override func viewWillLayout() {
     super.viewWillLayout()
-
     view.frame.size.height = view.fittingSize.height
   }
 

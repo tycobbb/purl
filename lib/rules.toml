@@ -1,0 +1,9 @@
+[[rules]]
+host = "amazon.com"
+params = [
+  "pf_rd_r",
+  "pf_rd_p",
+  "pd_rd_r",
+  "pd_rd_w",
+  "ref_",
+]
